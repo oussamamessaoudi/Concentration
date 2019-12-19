@@ -8,10 +8,10 @@
 
 import Foundation
 class Concentration{
-    var cards: [Card];
+    private(set) var cards: [Card]
     
     init(numberOfPairs: Int) {
-        cards = [Card]();
+        self.cards = [Card]();
         for index in 0..<numberOfPairs {
             let card = Card(identifier: index);
             cards.append(card)
@@ -20,26 +20,39 @@ class Concentration{
         cards.shuffle();
     }
     
-    var firstChosenIndex : Int?;
+    private var firstChosenIndex : Int? {
+        get {
+            var oneAndOnlyIndex : Int?;
+            for index in cards.indices {
+                if(cards[index].isFaceUp){
+                    if(oneAndOnlyIndex == nil){
+                        oneAndOnlyIndex = index;
+                    }
+                    else {
+                        return nil;
+                    }
+                }
+            }
+            return oneAndOnlyIndex;
+        }
+        set {
+            for faceDownIndex in cards.indices{
+                cards[faceDownIndex].isFaceUp = newValue == faceDownIndex;
+            }
+        }
+    }
     func flipCard(index: Int){
         if(index == firstChosenIndex || cards[index].isMatched) {return;}
 
         if let firstChosenIndexNotNil = firstChosenIndex {
+            cards[index].isFaceUp = true;
             if cards[index].identifier == cards[firstChosenIndexNotNil].identifier {
                 cards[index].isMatched = true;
                 cards[firstChosenIndexNotNil].isMatched = true;
             }
-            else {
-                cards[index].isFaceUp = true;
-            }
-            firstChosenIndex = nil;
         }
         else {
-            for index in cards.indices{
-                cards[index].isFaceUp = false;
-            }
             firstChosenIndex = index;
-            cards[index].isFaceUp = true;
         }
     }
 }
