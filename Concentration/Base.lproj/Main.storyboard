@@ -146,19 +146,29 @@
                                     <action selector="RestartGame:" destination="BYZ-38-t0r" eventType="touchUpInside" id="H0X-Wu-CNB"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score : 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6uq-vq-u9a">
+                                <rect key="frame" x="155.66666666666666" y="613" width="102.99999999999997" height="30"/>
+                                <color key="tintColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <color key="textColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="6uq-vq-u9a" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="5yf-I8-IBY"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="mle-u6-iwj" secondAttribute="bottom" constant="20" id="9Ez-o8-gGF"/>
                             <constraint firstItem="Cga-Ga-YX2" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Nja-gZ-222"/>
                             <constraint firstItem="Cga-Ga-YX2" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="XDu-da-xHz"/>
                             <constraint firstItem="mle-u6-iwj" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="fOf-Im-p9q"/>
+                            <constraint firstItem="mle-u6-iwj" firstAttribute="top" secondItem="6uq-vq-u9a" secondAttribute="bottom" constant="35" id="mzQ-5b-iep"/>
                             <constraint firstItem="mle-u6-iwj" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Cga-Ga-YX2" secondAttribute="bottom" constant="20" id="n6f-va-zYn"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Cga-Ga-YX2" secondAttribute="trailing" constant="20" id="rUd-1e-xWd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="labelScore" destination="6uq-vq-u9a" id="WRg-b9-alJ"/>
                         <outletCollection property="buttons" destination="Heh-fc-HdX" collectionClass="NSMutableArray" id="XFh-uI-0OY"/>
                         <outletCollection property="buttons" destination="wv1-29-RUr" collectionClass="NSMutableArray" id="xcs-h1-WFQ"/>
                         <outletCollection property="buttons" destination="yJN-tO-t53" collectionClass="NSMutableArray" id="kXd-Ie-K4J"/>

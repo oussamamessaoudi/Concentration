@@ -23,6 +23,7 @@ class ViewController: UIViewController {
     }
     
     //Mark: UI
+    @IBOutlet weak var labelScore: UILabel!
     @IBOutlet private var buttons: [UIButton]!
     @IBAction private func chooseCard(_ sender: UIButton) {
         let index = buttons.firstIndex(of: sender)!;
@@ -52,6 +53,7 @@ class ViewController: UIViewController {
                 button.alpha = 1
             }
         }
+        labelScore.text = "Score : \(game.score)";
     }
     
     //Mark: emojies

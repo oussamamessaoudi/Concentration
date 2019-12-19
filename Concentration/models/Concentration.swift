@@ -9,9 +9,13 @@
 import Foundation
 class Concentration{
     private(set) var cards: [Card]
+    private(set) var score : Int;
+    private(set) var cardsThatBeenShowing :  Set<Int>
     
     init(numberOfPairs: Int) {
         self.cards = [Card]();
+        self.score = 0;
+        cardsThatBeenShowing = Set<Int>();
         for index in 0..<numberOfPairs {
             let card = Card(identifier: index);
             cards.append(card)
@@ -47,12 +51,19 @@ class Concentration{
         if let firstChosenIndexNotNil = firstChosenIndex {
             cards[index].isFaceUp = true;
             if cards[index].identifier == cards[firstChosenIndexNotNil].identifier {
+                score += 2;
                 cards[index].isMatched = true;
                 cards[firstChosenIndexNotNil].isMatched = true;
+            }
+            else {
+                if(cardsThatBeenShowing.contains(index)){
+                    score += -1;
+                }
             }
         }
         else {
             firstChosenIndex = index;
         }
+        cardsThatBeenShowing.insert(index);
     }
 }
