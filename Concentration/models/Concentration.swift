@@ -50,7 +50,7 @@ class Concentration{
 
         if let firstChosenIndexNotNil = firstChosenIndex {
             cards[index].isFaceUp = true;
-            if cards[index].identifier == cards[firstChosenIndexNotNil].identifier {
+            if cards[index] == cards[firstChosenIndexNotNil] {
                 score += 2;
                 cards[index].isMatched = true;
                 cards[firstChosenIndexNotNil].isMatched = true;

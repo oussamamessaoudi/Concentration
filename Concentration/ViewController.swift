@@ -38,12 +38,12 @@ class ViewController: UIViewController {
             let card = game.cards[index];
             let button = buttons[index];
             if(card.isMatched){
-                button.setTitle(emoji(indentifier: card.identifier), for: UIControl.State.normal);
+                button.setTitle(emoji(card: card), for: UIControl.State.normal);
                 button.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0);
                 button.alpha = 0.5
             }
             else if(card.isFaceUp || card.isMatched){
-                button.setTitle(emoji(indentifier: card.identifier), for: UIControl.State.normal);
+                button.setTitle(emoji(card: card), for: UIControl.State.normal);
                 button.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0);
                 button.alpha = 1
             }
@@ -58,12 +58,12 @@ class ViewController: UIViewController {
     
     //Mark: emojies
     private var emojiChoices = ["☠️", "👽", "👻", "💩", "😸", "👾"];
-    private var emojies = [Int: String]();
-    private func emoji(indentifier : Int) -> String{
-        if(emojies[indentifier] == nil){
-            emojies[indentifier] = emojiChoices.remove(at: 0);
+    private var emojies = [Card: String]();
+    private func emoji(card : Card) -> String{
+        if(emojies[card] == nil){
+            emojies[card] = emojiChoices.remove(at: 0);
         }
-        return emojies[indentifier] ?? "?";
+        return emojies[card] ?? "?";
     }
 
 }
