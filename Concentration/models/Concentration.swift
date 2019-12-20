@@ -26,18 +26,7 @@ class Concentration{
     
     private var firstChosenIndex : Int? {
         get {
-            var oneAndOnlyIndex : Int?;
-            for index in cards.indices {
-                if(cards[index].isFaceUp){
-                    if(oneAndOnlyIndex == nil){
-                        oneAndOnlyIndex = index;
-                    }
-                    else {
-                        return nil;
-                    }
-                }
-            }
-            return oneAndOnlyIndex;
+            return cards.indices.filter {cards[$0].isFaceUp}.oneAndOnly
         }
         set {
             for faceDownIndex in cards.indices{
@@ -65,5 +54,10 @@ class Concentration{
             firstChosenIndex = index;
         }
         cardsThatBeenShowing.insert(index);
+    }
+}
+extension Collection {
+    var oneAndOnly : Element? {
+        count == 1 ? first : nil
     }
 }
