@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ConcentrationViewController: UIViewController {
 
     
     private var game : Concentration! {
@@ -34,6 +34,7 @@ class ViewController: UIViewController {
         game = Concentration(numberOfPairs: buttons.count/2);
     }
     func rebuildUI(){
+        if(buttons == nil) {return;}
         for index in buttons.indices {
             let card = game.cards[index];
             let button = buttons[index];
@@ -56,11 +57,18 @@ class ViewController: UIViewController {
         labelScore.text = "Score : \(game.score)";
     }
     
-    //Mark: emojies
-    private var emojiChoices = ["☠️", "👽", "👻", "💩", "😸", "👾"];
+    //Mark: theme && emojies
+    var theme : [String]? {
+        didSet {
+            emojiChoices = theme ?? []
+            emojies = [Card: String]()
+            rebuildUI()
+        }
+    }
+    private var emojiChoices = ConcentrationThemeChooserViewController.themes[._default]!;
     private var emojies = [Card: String]();
     private func emoji(card : Card) -> String{
-        if(emojies[card] == nil){
+        if emojies[card] == nil ,  emojiChoices.count > 0 {
             emojies[card] = emojiChoices.remove(at: 0);
         }
         return emojies[card] ?? "?";
